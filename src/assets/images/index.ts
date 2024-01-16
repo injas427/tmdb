@@ -4,5 +4,6 @@ export const IMAGES = {
     "Watch": require("./bottomTab/watch.png"),
     "Media Library": require("./bottomTab/media.png"),
     "More": require("./bottomTab/more.png"),
-  }
+  },
+  search: require("./search.png")
 }

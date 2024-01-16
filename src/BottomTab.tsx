@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
 import {COLORS, FONT_NAMES, FONT_SIZES} from "@theme"
-import { IMAGES } from './assets/images';
+import { IMAGES } from "@images/index"
 
 const ROUTES = ["Dashboard", "Watch", "Media Library", "More"]
 

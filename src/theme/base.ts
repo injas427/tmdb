@@ -4,6 +4,7 @@ export const COLORS = {
   gainsboro300: "#DBDBDF",
   gray: "#827D88",
   blue: "#61C3F2",
+  blue500: "#202C43",
   green: "#15D2BC",
   pink: "#E26CA5",
   violet: "#564CA3",

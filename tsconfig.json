@@ -18,6 +18,12 @@
       "@theme": [
         "src/theme"
       ],
+      "@images/*": [
+        "src/assets/images/*"
+      ],
+      "@components": [
+        "src/components"
+      ]
     }
   },
   "include": [
