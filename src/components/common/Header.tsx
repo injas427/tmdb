@@ -27,8 +27,8 @@ const style = StyleSheet.create({
     paddingHorizontal: 22
   },
   title: {
-    fontFamily: FONT_NAMES.bold,
+    fontFamily: FONT_NAMES.medium,
     color: COLORS.blue500,
-    fontSize: FONT_SIZES.large
+    fontSize: FONT_SIZES.large,
   }
 })

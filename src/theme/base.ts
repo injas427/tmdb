@@ -17,7 +17,8 @@ export const COLORS = {
 export const FONT_NAMES = {
   regular: "Poppins-Regular",
   bold: "Poppins-Bold",
-  semiBold: "Poppins-SemiBold"
+  semiBold: "Poppins-SemiBold",
+  medium: "Poppins-Medium",
 }
 
 export const FONT_SIZES = {
