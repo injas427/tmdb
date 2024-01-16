@@ -1,3 +1,4 @@
 export const QUERY_KEYS = {
-  MOVIES: "MOVIES"
+  MOVIES: "MOVIES",
+  GENRES: "GENRES",
 }

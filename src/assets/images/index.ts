@@ -5,5 +5,6 @@ export const IMAGES = {
     "Media Library": require("./bottomTab/media.png"),
     "More": require("./bottomTab/more.png"),
   },
-  search: require("./search.png")
+  search: require("./search.png"),
+  close: require("./close.png")
 }
