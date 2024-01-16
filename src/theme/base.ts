@@ -16,3 +16,12 @@ export const FONT_NAMES = {
   regular: "Poppins-Regular",
   bold: "Poppins-Bold",
 }
+
+export const FONT_SIZES = {
+  small: 10,
+  regular: 12,
+  medium: 14,
+  large: 16,
+  xlarge: 18,
+  xxlarge: 20,
+}

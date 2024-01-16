@@ -1,13 +1,13 @@
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
-import {COLORS, FONT_NAMES} from "@theme"
+import {COLORS, FONT_NAMES, FONT_SIZES} from "@theme"
 import { IMAGES } from './assets/images';
 
 const ROUTES = ["Dashboard", "Watch", "Media Library", "More"]
 
 export const MyTabBar = ({ state, descriptors, navigation }) => {
   return (
-    <View style={style.tabbarContainer}>
+    <View style={style.tabBarContainer}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label =
@@ -39,7 +39,7 @@ export const MyTabBar = ({ state, descriptors, navigation }) => {
             key={route.key}
           >
             <Image source={IMAGES.bottomTab[ROUTES[index]]} style={{width: 20, height: 20, tintColor: isFocused ?  COLORS.white : COLORS.whiteOpacity(50)}} />
-            <Text style={{ color: isFocused ?  COLORS.white : COLORS.whiteOpacity(50), marginTop: 10, fontFamily: isFocused ? FONT_NAMES.bold : FONT_NAMES.regular }}>
+            <Text style={{ color: isFocused ?  COLORS.white : COLORS.whiteOpacity(50), marginTop: 10, fontFamily: isFocused ? FONT_NAMES.bold : FONT_NAMES.regular, fontSize: FONT_SIZES.small }}>
               {ROUTES[index]}
             </Text>
           </TouchableOpacity>
@@ -50,7 +50,7 @@ export const MyTabBar = ({ state, descriptors, navigation }) => {
 }
 
 const style = StyleSheet.create({
-  tabbarContainer: {
+  tabBarContainer: {
     flexDirection: 'row',
     backgroundColor: COLORS.primary,
     borderTopLeftRadius: 25,

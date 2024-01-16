@@ -1,1 +1,4 @@
-export { Home } from "./Home"
+export { Dashboard } from "./Dashboard"
+export { Media } from "./Media"
+export { More } from "./More"
+export { Watch } from "./Watch"
