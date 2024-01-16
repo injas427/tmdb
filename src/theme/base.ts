@@ -10,12 +10,14 @@ export const COLORS = {
   violet: "#564CA3",
   yellow: "#CD9D0F",
   whiteOpacity: (opacity: number) => `#FFFFFF${opacity}`,
+  blackOpacity: (opacity: number) => `#000000${opacity}`,
   white: "#FFFFFF"
 }
 
 export const FONT_NAMES = {
   regular: "Poppins-Regular",
   bold: "Poppins-Bold",
+  semiBold: "Poppins-SemiBold"
 }
 
 export const FONT_SIZES = {
