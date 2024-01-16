@@ -1,0 +1,1 @@
+export { COLORS, FONT_NAMES } from "./base"

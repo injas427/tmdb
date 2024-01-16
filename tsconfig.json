@@ -15,6 +15,9 @@
       "@screens": [
         "src/screens"
       ],
+      "@theme": [
+        "src/theme"
+      ],
     }
   },
   "include": [
