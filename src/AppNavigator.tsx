@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {Dashboard, Media, More, Watch} from '@screens';
 import { MyTabBar } from './BottomTab';
+import {SCREEN_NAMES} from "@constants"
 
 
 const Tab = createBottomTabNavigator();
@@ -37,12 +38,10 @@ const MoreStack = () => (
 export const AppNavigator = () => (
   <NavigationContainer>
   <Tab.Navigator screenOptions={{headerShown: false}} tabBar={props => <MyTabBar {...props} />} >
-      <Tab.Screen name="DashboardStack" component={DashboardStack} />
-      <Tab.Screen name="WatchStack" component={WatchStack} />
-      <Tab.Screen name="MediaStack" component={MediaStack} />
-      <Tab.Screen name="MoreStack" component={MoreStack} />
+      <Tab.Screen name={SCREEN_NAMES.STACK.DASHBOARD} component={DashboardStack} />
+      <Tab.Screen name={SCREEN_NAMES.STACK.Watch} component={WatchStack} />
+      <Tab.Screen name={SCREEN_NAMES.STACK.Media} component={MediaStack} />
+      <Tab.Screen name={SCREEN_NAMES.STACK.More} component={MoreStack} />
     </Tab.Navigator>
   </NavigationContainer>
-
-  
 );
