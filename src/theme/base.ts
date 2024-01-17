@@ -11,7 +11,9 @@ export const COLORS = {
   yellow: "#CD9D0F",
   whiteOpacity: (opacity: number) => `#FFFFFF${opacity}`,
   blackOpacity: (opacity: number) => `#000000${opacity}`,
-  white: "#FFFFFF"
+  white: "#FFFFFF",
+  white500: "#F2F2F6"
+
 }
 
 export const FONT_NAMES = {

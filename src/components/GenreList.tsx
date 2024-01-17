@@ -1,42 +1,72 @@
-import { Loader, MovieCard } from '@src/components';
+import { GenreCard, Loader, SearchResultCard } from '@src/components';
 import { useGenres, useMovies } from '@hooks';
 import React, { useEffect, useState } from 'react';
-import {FlatList, Text, View} from 'react-native';
-import { COLORS, FONT_NAMES } from '@src/theme';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
+import { COLORS, FONT_NAMES, FONT_SIZES } from '@src/theme';
 
-export const GenreList = () => {
-  
+const ListHeaderComponent = () => <View>
+  <Text style={style.resultsTitle} >Top Results</Text>
+  <View style={style.divider} />
+</View>
+
+export const GenreList = ({searchKeyword = ""}: {searchKeyword: string}) => {
+ 
+  const [page, setPage] = useState(1)
+
   const {useFetchGenres} = useGenres()
+  const {useSearchMovies} = useMovies()
 
   const {data:genres, isLoading} = useFetchGenres()
-  
+  const {data: searchResults, isLoading: isSearching, hasNextPage, fetchNextPage} = useSearchMovies({page, query: searchKeyword})
+
+  useEffect(() => {
+    if(hasNextPage) fetchNextPage()
+  }, [page])
 
   const keyExtractor = (item, index) => `${item.id}_${index}`
 
-  const renderItem = ({item}) => <View style={{height: 100,
-    borderRadius: 10,
-    overflow: "hidden",
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    borderEndEndRadius: 10,
-    backgroundColor: COLORS.blackOpacity(10),
-    margin: 5
-    }}>
-    <Text style={{fontFamily: FONT_NAMES.bold, color: COLORS.primary}} >
-      {item.name}
-    </Text>
-  </View>
+  const searchedData = searchResults?.pages.map(p => p.results).flat()
+
+  const onEndReached = () => setPage(prev => prev +1)
+  
 
   return <>
-      <Loader isVisible={isLoading} />
-
+      <Loader isVisible={isLoading || isSearching} />
+{searchKeyword ? <FlatList
+showsVerticalScrollIndicator={false}
+key={"searchResults"}
+    data={searchedData ?? []}
+    keyExtractor={keyExtractor}
+    renderItem={({item, index}) => <SearchResultCard item={item} genres={genres.genres} />}
+    style={{paddingHorizontal: 20, marginBottom: 54}}
+    ListHeaderComponent={ListHeaderComponent}
+    onEndReached={onEndReached}
+    />
+    :
   <FlatList
+  showsVerticalScrollIndicator={false}
+  key={"genres"}
     data={genres?.genres ?? []}
     keyExtractor={keyExtractor}
-    renderItem={renderItem}
+    renderItem={GenreCard}
     style={{paddingHorizontal: 20, marginBottom: 54}}
     numColumns={2}
     />
+}
     </>
 }
+
+const style = StyleSheet.create({
+  resultsTitle: {
+    fontFamily: FONT_NAMES.medium,
+    fontSize: FONT_SIZES.regular,
+    color: COLORS.blue500,
+    marginTop: 20,
+    paddingBottom: 10
+  },
+  divider: {
+    height: 1,
+    flex: 1,
+    backgroundColor: COLORS.blackOpacity(11)
+  }
+})

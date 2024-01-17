@@ -9,36 +9,37 @@ type HeaderTypes = {
   showSearch?: boolean;
   onSearchShow?: () => void,
   onSearchClose?: () => void,
+  onSearch?: (e:string) => void,
+  searchKeyword?: string
 }
 
-export const Header = ({title, showSearch = false, onSearchShow = () => {}, onSearchClose = () => {}}: HeaderTypes) => {
+export const Header = ({title, showSearch = false, onSearchShow = () => {}, onSearchClose = () => {}, onSearch = () => {}, searchKeyword = ""}: HeaderTypes) => {
   const [shouldShowSearch, setShouldShowSearch] = useState(false)
-  const [searchKeyword, setSearchKeyword] = useState("")
 
   const handleSearchIconPress = () => setShouldShowSearch(prev => !prev)
 
   useEffect(() => {
     if(shouldShowSearch) onSearchShow()
     else {
-  setSearchKeyword("")
   onSearchClose()
     }
   }, [shouldShowSearch])
+  
 
   const handleSearchKeyword = (text:string) => {
-    setSearchKeyword(text)
+    onSearch(text)
   }
 
 return <View style={style.headerContainer} >
   {!shouldShowSearch ? <><Text style={style.title} >{title}</Text>
   {showSearch && <TouchableOpacity onPress={handleSearchIconPress} >
-  <Image source={IMAGES.search} style={{width: 40, height: 40}} />
+  <Image source={IMAGES.search} style={style.headerIcon} />
   </TouchableOpacity>}
-  </>: <View style={{backgroundColor: "#F2F2F6", flex: 1, borderRadius: 30, paddingHorizontal: 10, flexDirection: "row", alignItems: "center", justifyContent: "space-between"}} >
-  <Image source={IMAGES.search} style={{width: 40, height: 40}} />
+  </>: <View style={style.searchContainer} >
+  <Image source={IMAGES.search} style={style.headerIcon} />
   <DebounceInput value={searchKeyword} onChangeText={handleSearchKeyword} placeholder="TV Shows Movies and More"/>
   <TouchableOpacity onPress={handleSearchIconPress} >
-    <Image source={IMAGES.close} style={{width: 30, height: 30}} />
+    <Image source={IMAGES.close} style={style.closeIcon} />
     </TouchableOpacity>
     </View>}
 </View>
@@ -57,5 +58,14 @@ const style = StyleSheet.create({
     fontFamily: FONT_NAMES.medium,
     color: COLORS.blue500,
     fontSize: FONT_SIZES.large,
+  },
+  searchContainer: {
+    backgroundColor: COLORS.white500, flex: 1, borderRadius: 30, paddingHorizontal: 10, flexDirection: "row", alignItems: "center", justifyContent: "space-between"
+  },
+  headerIcon: {
+    width: 40, height: 40
+  },
+  closeIcon: {
+    width: 30, height: 30
   }
 })

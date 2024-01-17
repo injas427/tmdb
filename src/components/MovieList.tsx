@@ -10,7 +10,7 @@ export const MovieList = () => {
 
   const {data:movies, hasNextPage, fetchNextPage, isLoading} = useFetchMovies({page})
 
-  useEffect(() => {    
+  useEffect(() => {
     if(hasNextPage) fetchNextPage()
   }, [page])
   
@@ -23,13 +23,14 @@ export const MovieList = () => {
 
 
   return <>
-      <Loader isVisible={isLoading} />
-  <FlatList
-    data={movieList}
-    keyExtractor={keyExtractor}
-    renderItem={MovieCard}
-    style={{paddingHorizontal: 20, marginBottom: 54}}
-    onEndReached={onEndReached}
-    />
-    </>
+    <Loader isVisible={isLoading} />
+    <FlatList
+    showsVerticalScrollIndicator={false}
+      data={movieList}
+      keyExtractor={keyExtractor}
+      renderItem={MovieCard}
+      style={{paddingHorizontal: 20, marginBottom: 54}}
+      onEndReached={onEndReached}
+      />
+  </>
 }

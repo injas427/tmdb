@@ -1,17 +1,22 @@
-import { GenreList, Header, Loader, MovieCard, MovieList } from '@src/components';
-import { useGenres, useMovies } from '@hooks';
-import React, { useEffect, useState } from 'react';
-import {FlatList, Text, View} from 'react-native';
+import { GenreList, Header, MovieList } from '@src/components';
+import React, { useState } from 'react';
+import {View} from 'react-native';
 
 export const Watch = () => {
   const [shouldShowMovies, setShouldShowMovies] = useState(true)
+  const [searchKeyword, setSearchKeyword] = useState("")
 
   const onSearchShow = () => setShouldShowMovies(false)
 
-  const onSearchClose = () => setShouldShowMovies(true)
+  const onSearchClose = () => {
+    setSearchKeyword("")
+    setShouldShowMovies(true)
+  }
+
+  const handleOnSearch = (text:string) => setSearchKeyword(text)
 
   return <View>
-    <Header title='Watch' showSearch  onSearchClose={onSearchClose} onSearchShow={onSearchShow}/>
-    {shouldShowMovies ? <MovieList /> : <GenreList />}
+    <Header title='Watch' searchKeyword={searchKeyword} onSearch={handleOnSearch} showSearch  onSearchClose={onSearchClose} onSearchShow={onSearchShow}/>
+    {shouldShowMovies ? <MovieList /> : <GenreList searchKeyword={searchKeyword} />}
   </View>
 }
