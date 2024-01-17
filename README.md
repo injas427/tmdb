@@ -19,3 +19,8 @@ in `env/keys.development.json` you need to put your API key.
 ```bash
 npm run android
 ```
+
+# To Install the Application
+
+
+Navigate to [Diawi](https://i.diawi.com/eu4mCt) and scan the QR code or install it directly opening the link in your mobile and download it from there
