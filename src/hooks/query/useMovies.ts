@@ -8,11 +8,6 @@ export const useMovies = () => {
       queryKey: [QUERY_KEYS.MOVIES],
       queryFn: () => fetchUpcomingMovies({ page }),
       getNextPageParam: (lastPage, allPages) => allPages.length === lastPage.total_pages ? undefined : page
-    }),
-    useSearchMovies: ({ page = 1, query = "" }) => useInfiniteQuery({
-      queryKey: [QUERY_KEYS.SEARCH_RESULTS, query],
-      queryFn: () => searchMovies({ page, query }),
-      getNextPageParam: (lastPage, allPages) => allPages.length === lastPage.total_pages ? undefined : page
-    }),
+    })
   }
 }

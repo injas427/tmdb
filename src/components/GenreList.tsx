@@ -1,5 +1,5 @@
 import { GenreCard, Loader, SearchResultCard } from '@src/components';
-import { useGenres, useMovies } from '@hooks';
+import { useGenres, useSearchMovies } from '@hooks';
 import React, { useEffect, useState } from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import { COLORS, FONT_NAMES, FONT_SIZES } from '@src/theme';
@@ -14,10 +14,10 @@ export const GenreList = ({searchKeyword = ""}: {searchKeyword: string}) => {
   const [page, setPage] = useState(1)
 
   const {useFetchGenres} = useGenres()
-  const {useSearchMovies} = useMovies()
+  const {useSearchMoviesByName} = useSearchMovies()
 
   const {data:genres, isLoading} = useFetchGenres()
-  const {data: searchResults, isLoading: isSearching, hasNextPage, fetchNextPage} = useSearchMovies({page, query: searchKeyword})
+  const {data: searchResults, isLoading: isSearching, hasNextPage, fetchNextPage} = useSearchMoviesByName({page, query: searchKeyword})
 
   useEffect(() => {
     if(hasNextPage) fetchNextPage()
