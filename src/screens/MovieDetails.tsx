@@ -2,7 +2,7 @@ import { IMAGES } from '@src/assets/images';
 import { Loader } from '@src/components';
 import { useMovies } from '@src/hooks';
 import { COLORS, FONT_NAMES, FONT_SIZES } from '@src/theme';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Image,
   ImageBackground,
@@ -15,6 +15,7 @@ import {
 import Keys from 'react-native-keys';
 import { type MovieDetail as MovieDetailType } from '@types';
 import dayjs from 'dayjs';
+import { VideoPlayer } from '@src/components/VideoPlayer';
 
 const GENRE_BACKGROUNDS = [
   COLORS.blue,
@@ -27,22 +28,31 @@ const GENRE_BACKGROUNDS = [
 
 export const MovieDetails = ({ route, navigation }) => {
   const { movieId } = route.params;
+  const [shouldPlayVideo, setShouldPlayVideo] = useState(false);
 
-  const { useFetchMovieDetails } = useMovies();
+  const { useFetchMovieDetails, useFetchMovieVideos } = useMovies();
   const {
     data: movieDetails,
     isLoading,
   }: { data: MovieDetailType; isLoading: boolean } = useFetchMovieDetails({
     id: movieId,
   });
+  const { data: movieVideos } = useFetchMovieVideos({ id: movieId });
 
   const handleBack = () => navigation.goBack();
+
+  const onVideoClose = () => setShouldPlayVideo(false);
 
   if (isLoading) {
     return <Loader isLoading />;
   }
   return (
     <View style={{ flex: 1 }}>
+      <VideoPlayer
+        isVisible={shouldPlayVideo}
+        videoId={movieVideos.results[0]?.key}
+        onVideoClose={onVideoClose}
+      />
       <TouchableOpacity style={style.headerContainer} onPress={handleBack}>
         <Image source={IMAGES.arrowBack} style={style.backArrow} />
         <Text style={style.headerTitle}>{movieDetails.title}</Text>
@@ -62,7 +72,11 @@ export const MovieDetails = ({ route, navigation }) => {
             <TouchableOpacity style={style.ticketButton}>
               <Text style={style.ticketTitle}>Get Tickets</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={style.watchTrailerButton}>
+            <TouchableOpacity
+              style={style.watchTrailerButton}
+              onPress={() => {
+                setShouldPlayVideo(true);
+              }}>
               <Text style={style.ticketTitle}>Watch Trailer</Text>
             </TouchableOpacity>
           </View>
