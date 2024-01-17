@@ -9,10 +9,10 @@ import 'react-native-gesture-handler';
 
 import React from 'react';
 import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
-import {COLORS} from "./src/theme"
+import {COLORS} from './src/theme';
 
 import {AppNavigator} from './src/AppNavigator';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -20,10 +20,10 @@ function App(): JSX.Element {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        networkMode: "offlineFirst"
-      }
-    }
-  })
+        networkMode: 'offlineFirst',
+      },
+    },
+  });
 
   const backgroundStyle = {
     backgroundColor: COLORS.white,
@@ -37,7 +37,7 @@ function App(): JSX.Element {
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <QueryClientProvider client={queryClient}>
-      <AppNavigator />
+        <AppNavigator />
       </QueryClientProvider>
     </SafeAreaView>
   );

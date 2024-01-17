@@ -8,14 +8,14 @@ module.exports = {
         root: ['.'],
         alias: {
           '@src': './src',
-          '@screens': "./src/screens",
-          '@theme': "./src/theme",
-          '@images': "./src/assets/images",
-          '@constants': "./src/constants",
-          '@hooks': "./src/hooks",
+          '@screens': './src/screens',
+          '@theme': './src/theme',
+          '@images': './src/assets/images',
+          '@constants': './src/constants',
+          '@hooks': './src/hooks',
         },
       },
     ],
-    'react-native-reanimated/plugin'
-  ]
+    'react-native-reanimated/plugin',
+  ],
 };

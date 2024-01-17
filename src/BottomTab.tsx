@@ -1,22 +1,15 @@
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import React from 'react';
+import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
 
-import {COLORS, FONT_NAMES, FONT_SIZES} from "@theme"
-import { IMAGES } from "@images/index"
+import {COLORS, FONT_NAMES, FONT_SIZES} from '@theme';
+import {IMAGES} from '@images/index';
 
-const ROUTES = ["Dashboard", "Watch", "Media Library", "More"]
+const ROUTES = ['Dashboard', 'Watch', 'Media Library', 'More'];
 
-export const MyTabBar = ({ state, descriptors, navigation }) => {
+export const MyTabBar = ({state, navigation}) => {
   return (
     <View style={style.tabBarContainer}>
       {state.routes.map((route, index) => {
-        const { options } = descriptors[route.key];
-        const label =
-          options.tabBarLabel !== undefined
-            ? options.tabBarLabel
-            : options.title !== undefined
-            ? options.title
-            : route.name;
-
         const isFocused = state.index === index;
 
         const onPress = () => {
@@ -35,11 +28,25 @@ export const MyTabBar = ({ state, descriptors, navigation }) => {
           <TouchableOpacity
             accessibilityRole="button"
             onPress={onPress}
-            style={{ flex: 1, alignItems: "center", justifyContent:"center",}}
-            key={route.key}
-          >
-            <Image source={IMAGES.bottomTab[ROUTES[index]]} style={{width: 20, height: 20, tintColor: isFocused ?  COLORS.white : COLORS.whiteOpacity(50)}} />
-            <Text style={{ color: isFocused ?  COLORS.white : COLORS.whiteOpacity(50), marginTop: 10, fontFamily: isFocused ? FONT_NAMES.bold : FONT_NAMES.regular, fontSize: FONT_SIZES.small }}>
+            style={style.button}
+            key={route.key}>
+            <Image
+              source={IMAGES.bottomTab[ROUTES[index]]}
+              style={[
+                style.image,
+                {
+                  tintColor: isFocused ? COLORS.white : COLORS.whiteOpacity(50),
+                },
+              ]}
+            />
+            <Text
+              style={[
+                style.label,
+                {
+                  color: isFocused ? COLORS.white : COLORS.whiteOpacity(50),
+                  fontFamily: isFocused ? FONT_NAMES.bold : FONT_NAMES.regular,
+                },
+              ]}>
               {ROUTES[index]}
             </Text>
           </TouchableOpacity>
@@ -47,7 +54,7 @@ export const MyTabBar = ({ state, descriptors, navigation }) => {
       })}
     </View>
   );
-}
+};
 
 const style = StyleSheet.create({
   tabBarContainer: {
@@ -55,6 +62,15 @@ const style = StyleSheet.create({
     backgroundColor: COLORS.primary,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
-    paddingVertical: 15
-  }
-})
+    paddingVertical: 15,
+  },
+  button: {flex: 1, alignItems: 'center', justifyContent: 'center'},
+  image: {
+    width: 20,
+    height: 20,
+  },
+  label: {
+    marginTop: 10,
+    fontSize: FONT_SIZES.small,
+  },
+});
