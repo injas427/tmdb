@@ -6,5 +6,6 @@ export const IMAGES = {
     "More": require("./bottomTab/more.png"),
   },
   search: require("./search.png"),
-  close: require("./close.png")
+  close: require("./close.png"),
+  placeholder: require("./placeholder.png"),
 }
