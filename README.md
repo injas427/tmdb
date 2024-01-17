@@ -24,3 +24,10 @@ npm run android
 
 
 Navigate to [Diawi](https://i.diawi.com/eu4mCt) and scan the QR code or install it directly opening the link in your mobile and download it from there
+
+
+# Demo Video
+
+
+https://github.com/injas427/tmdb/assets/14922455/29b2e0a9-43b5-4a03-bb56-8c04f49675e8
+
