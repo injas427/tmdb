@@ -3,6 +3,7 @@ import { useGenres, useSearchMovies } from '@hooks';
 import React, { useEffect, useState } from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import { COLORS, FONT_NAMES, FONT_SIZES } from '@src/theme';
+import { useNavigation } from '@react-navigation/native';
 
 const ListHeaderComponent = () => <View>
   <Text style={style.resultsTitle} >Top Results</Text>
@@ -15,6 +16,7 @@ export const GenreList = ({searchKeyword = ""}: {searchKeyword: string}) => {
 
   const {useFetchGenres} = useGenres()
   const {useSearchMoviesByName} = useSearchMovies()
+  const navigation = useNavigation()
 
   const {data:genres, isLoading} = useFetchGenres()
   const {data: searchResults, isLoading: isSearching, hasNextPage, fetchNextPage} = useSearchMoviesByName({page, query: searchKeyword})
@@ -31,13 +33,13 @@ export const GenreList = ({searchKeyword = ""}: {searchKeyword: string}) => {
   
 
   return <>
-      <Loader isVisible={isLoading || isSearching} />
+      <Loader isLoading={isLoading || isSearching} />
 {searchKeyword ? <FlatList
 showsVerticalScrollIndicator={false}
 key={"searchResults"}
     data={searchedData ?? []}
     keyExtractor={keyExtractor}
-    renderItem={({item, index}) => <SearchResultCard item={item} genres={genres.genres} />}
+    renderItem={({item, index}) => <SearchResultCard item={item} genres={genres.genres} navigation={navigation} />}
     style={{paddingHorizontal: 20, marginBottom: 54}}
     ListHeaderComponent={ListHeaderComponent}
     onEndReached={onEndReached}

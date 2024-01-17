@@ -2,11 +2,13 @@ import { Loader, MovieCard } from '@src/components';
 import { useMovies } from '@hooks';
 import React, { useEffect, useState } from 'react';
 import {FlatList} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export const MovieList = () => {
   const [page, setPage] = useState(1)
   
   const {useFetchMovies} = useMovies()
+  const navigation = useNavigation()
 
   const {data:movies, hasNextPage, fetchNextPage, isLoading} = useFetchMovies({page})
 
@@ -23,12 +25,12 @@ export const MovieList = () => {
 
 
   return <>
-    <Loader isVisible={isLoading} />
+    <Loader isLoading={isLoading} />
     <FlatList
     showsVerticalScrollIndicator={false}
       data={movieList}
       keyExtractor={keyExtractor}
-      renderItem={MovieCard}
+      renderItem={({item}) => <MovieCard item={item} navigation={navigation} />}
       style={{paddingHorizontal: 20, marginBottom: 54}}
       onEndReached={onEndReached}
       />

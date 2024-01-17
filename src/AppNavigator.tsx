@@ -2,7 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {Dashboard, Media, More, Watch} from '@screens';
+import {Dashboard, Media, More, MovieDetails, Watch} from '@screens';
 import { MyTabBar } from './BottomTab';
 import {SCREEN_NAMES} from "@constants"
 
@@ -13,25 +13,26 @@ const Stack = createStackNavigator();
 
 const DashboardStack = () => (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Home" component={Dashboard} />
+      <Stack.Screen name={SCREEN_NAMES.DASHBOARD} component={Dashboard} />
     </Stack.Navigator>
 )
 
 const WatchStack = () => (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Home" component={Watch} />
+      <Stack.Screen name={SCREEN_NAMES.WATCH} component={Watch} />
+      <Stack.Screen name={SCREEN_NAMES.MOVIE_DETAILS} component={MovieDetails} />
     </Stack.Navigator>
 )
 
 const MediaStack = () => (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Home" component={Media} />
+      <Stack.Screen name={SCREEN_NAMES.MEDIA} component={Media} />
     </Stack.Navigator>
 )
 
 const MoreStack = () => (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Home" component={More} />
+      <Stack.Screen name={SCREEN_NAMES.MORE} component={More} />
     </Stack.Navigator>
 )
 

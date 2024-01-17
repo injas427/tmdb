@@ -1,6 +1,6 @@
-import { fetchUpcomingMovies, searchMovies } from "@src/api/movies"
+import { fetchMovieDetail, fetchUpcomingMovies } from "@src/api/movies"
 import { QUERY_KEYS } from "@src/constants"
-import { useInfiniteQuery } from "@tanstack/react-query"
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query"
 
 export const useMovies = () => {
   return {
@@ -8,6 +8,10 @@ export const useMovies = () => {
       queryKey: [QUERY_KEYS.MOVIES],
       queryFn: () => fetchUpcomingMovies({ page }),
       getNextPageParam: (lastPage, allPages) => allPages.length === lastPage.total_pages ? undefined : page
-    })
+    }),
+    useFetchMovieDetails: ({ id }: { id: number }) => useQuery({
+      queryKey: [QUERY_KEYS.MOVIE_DETAILS, id],
+      queryFn: () => fetchMovieDetail({ id }),
+    }),
   }
 }

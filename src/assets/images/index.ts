@@ -8,4 +8,5 @@ export const IMAGES = {
   search: require("./search.png"),
   close: require("./close.png"),
   placeholder: require("./placeholder.png"),
+  arrowBack: require("./arrow_back.png"),
 }

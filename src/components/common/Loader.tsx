@@ -2,8 +2,8 @@ import { COLORS } from "@src/theme"
 import React from "react"
 import { ActivityIndicator, Modal, View } from "react-native"
 
-export const Loader = ({isVisible = false}: {isVisible: boolean}) => <Modal
-visible={isVisible}
+export const Loader = ({isLoading = false}: {isLoading: boolean}) => <Modal
+visible={isLoading}
 transparent
 style={{flex: 1}}
 >

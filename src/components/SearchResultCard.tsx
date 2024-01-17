@@ -1,11 +1,13 @@
 import { IMAGES } from "@src/assets/images"
-import { useGenres } from "@src/hooks"
+import { SCREEN_NAMES } from "@src/constants"
 import { COLORS, FONT_NAMES, FONT_SIZES } from "@src/theme"
 import React from "react"
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import Keys from "react-native-keys"
 
-export const SearchResultCard = ({item, genres = []}) => {
+export const SearchResultCard = ({item, genres = [], navigation}) => {
+
+  const handleMovieCardClick = () => navigation.navigate(SCREEN_NAMES.MOVIE_DETAILS, { movieId: item.id});
 
   const getImage = () => {
     if(item.poster_path)
@@ -25,7 +27,7 @@ export const SearchResultCard = ({item, genres = []}) => {
     return ""
   }
 
-return <TouchableOpacity style={style.container} >
+return <TouchableOpacity style={style.container} onPress={handleMovieCardClick}>
   <Image source={getImage()} style={style.image} resizeMode={getResizeMode()} />
   <View style={style.titleContainer} >
     <Text style={style.title} >{item.title}</Text>
