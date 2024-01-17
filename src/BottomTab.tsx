@@ -1,12 +1,16 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
-import {COLORS, FONT_NAMES, FONT_SIZES} from '@theme';
-import {IMAGES} from '@images/index';
+import { COLORS, FONT_NAMES, FONT_SIZES } from '@theme';
+import { IMAGES } from '@images/index';
 
 const ROUTES = ['Dashboard', 'Watch', 'Media Library', 'More'];
 
-export const MyTabBar = ({state, navigation}) => {
+export const MyTabBar = ({ state, navigation }) => {
+  if (state.routes[state.index].state?.index > 0) {
+    return null;
+  }
+
   return (
     <View style={style.tabBarContainer}>
       {state.routes.map((route, index) => {
@@ -64,7 +68,7 @@ const style = StyleSheet.create({
     borderTopRightRadius: 25,
     paddingVertical: 15,
   },
-  button: {flex: 1, alignItems: 'center', justifyContent: 'center'},
+  button: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   image: {
     width: 20,
     height: 20,

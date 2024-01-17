@@ -13,6 +13,7 @@ module.exports = {
           '@images': './src/assets/images',
           '@constants': './src/constants',
           '@hooks': './src/hooks',
+          '@types': './src/types',
         },
       },
     ],
